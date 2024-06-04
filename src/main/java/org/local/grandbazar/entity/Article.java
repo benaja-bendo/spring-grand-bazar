@@ -4,37 +4,53 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 public class Article {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String title;
-    private String content;
 
-    // Getters and Setters
-    public Long getId() {
-        return id;
-    }
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  private String title;
+  private String content;
 
-    public String getTitle() {
-        return title;
-    }
+  @ManyToOne
+  @JoinColumn(name = "vendeur_id")
+  private Vendeur vendeur;
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  // Getters and Setters
+  public Long getId() {
+    return id;
+  }
 
-    public String getContent() {
-        return content;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
+  public String getContent() {
+    return content;
+  }
+
+  public void setContent(String content) {
+    this.content = content;
+  }
+
+  public Vendeur getVendeur() {
+    return vendeur;
+  }
+
+  public void setVendeur(Vendeur vendeur) {
+    this.vendeur = vendeur;
+  }
 }
