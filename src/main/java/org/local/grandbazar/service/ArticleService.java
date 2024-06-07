@@ -6,6 +6,7 @@ import org.local.grandbazar.repository.SellerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ArticleService {
@@ -31,5 +32,9 @@ public class ArticleService {
 
     public void deleteArticle(Long id) {
         articleRepository.deleteById(id);
+    }
+
+    public Optional<Article> findById(Long id) {
+        return articleRepository.findById(id);
     }
 }

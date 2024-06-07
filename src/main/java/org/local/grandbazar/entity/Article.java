@@ -1,5 +1,6 @@
 package org.local.grandbazar.entity;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class Article {
 
     @ManyToOne
     @JoinColumn(name = "seller_id", nullable = false)
+    @Nullable
     private Seller seller;
 
     public Long getId() {
@@ -50,13 +52,5 @@ public class Article {
 
     public void setSold(boolean sold) {
         this.sold = sold;
-    }
-
-    public Seller getSeller() {
-        return seller;
-    }
-
-    public void setSeller(Seller seller) {
-        this.seller = seller;
     }
 }

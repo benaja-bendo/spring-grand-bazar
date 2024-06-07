@@ -2,6 +2,7 @@ package org.local.grandbazar.controller;
 
 import org.local.grandbazar.entity.Article;
 import org.local.grandbazar.service.ArticleService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,8 +33,14 @@ public class ArticleController {
 
     @PutMapping("/{id}")
     public Article updateArticle(@PathVariable Long id, @RequestBody Article article) {
-        article.setId(id);
-        return articleService.saveArticle(article);
+        return articleService.findById(id)
+                .map(art -> {
+                    art.setTitle(article.getTitle());
+                    art.setContent(article.getContent());
+                    art.setSold(article.isSold());
+                    return articleService.saveArticle(art);
+                })
+                .orElse(null);
     }
 
     @DeleteMapping("/{id}")
